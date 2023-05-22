@@ -49,7 +49,7 @@ jobs:
           ARCH=x86_64 ./appimagetool -n AppDir/
 
       - name: release
-      - uses: lucasmz1/wine_appimage@8.0.1
+        uses: lucasmz1/wine_appimage@8.0.1
         with:
           title: 8.0.1
           automatic_release_tag: 8.0.1
