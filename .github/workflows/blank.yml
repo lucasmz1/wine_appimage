@@ -49,11 +49,11 @@ jobs:
           ARCH=x86_64 ./appimagetool -n AppDir/
 
       - name: release
-        uses: lucasmz1/wine_appimage@main
+        uses: lucasmz1/wine_appimage@8.0.1
         with:
           title: 8.0.1
           automatic_release_tag: 8.0.1
           prerelease: false
           draft: false
           files: /home/runner/work/wine_appimage/wine_appimage/*.AppImage*
-          repo_token: ${{ secrets.LUCASMZ1 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
