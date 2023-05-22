@@ -45,7 +45,7 @@ jobs:
       - name: Build appimage
         run: |
          
-          ./appimage-builder --skip-appimage --recipe ../wine-stable.yml
+          ./appimage-builder --skip-appimage --recipe wine-stable.yml
           ./appimagetool -n squashfs-root/
 
       - name: release
