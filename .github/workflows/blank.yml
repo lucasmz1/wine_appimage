@@ -48,7 +48,7 @@ jobs:
           # sed -i "s|520|$NVDV|" wine-stable.yml
           rm appimage-builder ; sed -i 's|xz|zstd|' squashfs-root/usr/lib/python3.8/site-packages/appimagebuilder/modules/prime/appimage_primer.py
          
-          squashfs-root/AppRun --recipe wine-stable.yml
+          squashfs-root/AppRun --recipe --skip-appimage wine-stable.yml
           
           wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool ; chmod a+x appimagetool
           
