@@ -52,7 +52,7 @@ jobs:
           
           wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool ; chmod a+x appimagetool
           
-          ./appimagetool -n AppDir/
+          ./appimagetool -n squashfs-root/
 
       - name: release
         uses: marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303
