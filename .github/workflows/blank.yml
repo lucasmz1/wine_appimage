@@ -25,6 +25,5 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 uses: AppImageCrafters/build-appimage@master
   with:
-    recipe: "wine-stable.yml"
-  env:
-    UPDATE_INFO: gh-releases-zsync|lucasmz1|wine-stable|latest|*x86_64.AppImage.zsync
+    recipe: "./wine-stable.yml"
+
