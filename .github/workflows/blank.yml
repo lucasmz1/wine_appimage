@@ -56,4 +56,4 @@ jobs:
           prerelease: false
           draft: false
           files: /home/runner/work/wine_appimage/wine_appimage/*.AppImage*
-          repo_token: ${{ secrets.lucasmz1 }}
+          repo_token: ${{ secrets.LUCASMZ1 }}
