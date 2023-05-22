@@ -43,7 +43,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build appimage
         run: |
-        
+         rm appimage-builder ; sed -i 's|xz|zstd|' squashfs-root/usr/lib/python3.8/site-packages/appimagebuilder/modules/prime/appimage_primer.py
           # force zstd format in appimagebuilder for appimages
           #rm appimage-builder ; sed -i 's|xz|zstd|' squashfs-root/usr/lib/python3.8/site-packages/appimagebuilder/modules/prime/appimage_primer.py
 
