@@ -43,11 +43,12 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build appimage
         run: |
-
+         ./appimage-builder --appimage-extract
           # set Nvidia driver version
           # sed -i "s|520|$NVDV|" wine-stable.yml
+          rm appimage-builder ; sed -i 's|xz|zstd|' squashfs-root/usr/lib/python3.8/site-packages/appimagebuilder/modules/prime/appimage_primer.py
          
-          ./appimage-builder --recipe wine-stable.yml
+          squashfs-root/AppRun --recipe wine-stable.yml
 
       - name: release
         uses: marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303
