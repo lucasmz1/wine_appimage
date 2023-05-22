@@ -49,11 +49,11 @@ jobs:
           ARCH=x86_64 ./appimagetool -n AppDir/
 
       - name: release
-        uses: marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303
+        uses: lucasmz1/wine_appimage-Action@8.0.1
         with:
           title: Continuous build (stable)
           automatic_release_tag: continuous-stable
           prerelease: false
           draft: false
           files: /home/runner/work/wine_appimage/wine_appimage/*.AppImage*
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.lucasmz1 }}
