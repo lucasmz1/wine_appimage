@@ -51,8 +51,8 @@ jobs:
       - name: release
         uses: lucasmz1/wine_appimage@8.0.1
         with:
-          title: Continuous build (stable)
-          automatic_release_tag: continuous-stable
+          title: 8.0.1
+          automatic_release_tag: 8.0.1
           prerelease: false
           draft: false
           files: /home/runner/work/wine_appimage/wine_appimage/*.AppImage*
