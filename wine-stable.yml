@@ -82,6 +82,9 @@ AppDir:
       - libxcb-shm0:i386
       - libxcb-xfixes0:i386
       - libxcb1:i386
+      - lib32-alsa-plugins
+      - lib32-libpulse
+      - lib32-openal
 
   files:
     exclude:
