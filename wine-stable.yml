@@ -83,7 +83,6 @@ AppDir:
       - libxcb-xfixes0:i386
       - libxcb1:i386
       - alsa-tools
-      - alsa-tools:i386
       - alsa-utils
       - alsa-utils:i386
       - libpulse0
