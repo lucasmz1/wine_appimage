@@ -87,7 +87,7 @@ AppDir:
       - libpulse0
       - libpulse0:i386
       # -lucas
-            - libasound2
+      - libasound2
       - libglib2.0-0
       - libgphoto2-6
       - libgphoto2-port12
