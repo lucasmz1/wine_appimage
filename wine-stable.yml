@@ -27,7 +27,7 @@ AppDir:
     sources:
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse'
       - sourceline: 'deb [trusted=yes] https://dl.winehq.org/wine-builds/ubuntu/ focal main'
-      - sourceline: 'deb [trusted=yes] https://ppa.launchpadcontent.net/oibaf/graphics-drivers/ubuntu focal main'
+      - sourceline: 'deb [trusted=yes] https://ppa.launchpadcontent.net/kisak/kisak-mesa/ubuntu focal main'
 
     include:
       - bash
