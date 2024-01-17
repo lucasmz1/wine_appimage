@@ -209,10 +209,10 @@ AppDir:
      wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-i386/wine-stable-i386_9.0~focal-1_i386.deb
      wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/wine-stable_9.0~focal-1_amd64.deb
      wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/wine-stable-amd64_9.0~focal-1_amd64.deb
-     dpkg -x "wine-stable_8.0.2~focal-1_i386.deb" AppDir/
-     dpkg -x "wine-stable-i386_8.0.2~focal-1_i386.deb" AppDir/
-     dpkg -x "wine-stable_8.0.2~focal-1_amd64.deb" AppDir/
-     dpkg -x "wine-stable-amd64_8.0.2~focal-1_amd64.deb" AppDir/
+     dpkg -x "wine-stable_9.0~focal-1_i386.deb" AppDir/
+     dpkg -x "wine-stable-i386_9.0~focal-1_i386.deb" AppDir/
+     dpkg -x "wine-stable_9.0~focal-1_amd64.deb" AppDir/
+     dpkg -x "wine-stable-amd64_9.0~focal-1_amd64.deb" AppDir/
      (cd AppDir/usr/bin; ln -s "../../opt/wine-stable/bin/"* .)
 
      # Cleanup
