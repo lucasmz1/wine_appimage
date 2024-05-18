@@ -1,3 +1,6 @@
+# testing
+cd "$(dirname "$(readlink -f "${0}")")"
+
 # WINE env
 export WINEPREFIX=${WINEPREFIX:-"$HOME/.wine-appimage"}
 export WINEDEBUG=${WINEDEBUG:-"fixme-all"}
