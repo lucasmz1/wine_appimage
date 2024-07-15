@@ -6,7 +6,7 @@ name: CI
 on:
   # Build at 00:00 on every 12th day-of-month.
   schedule:
-    - cron: "0 0 */12 * *"
+    - cron: "0 0 */6 * *"
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ main ]
@@ -35,6 +35,7 @@ jobs:
           sudo apt update && sudo apt install libfuse2 -y
           wget -q "https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage" -O appimage-builder ; chmod a+x appimage-builder
           wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool ; chmod a+x appimagetool
+          echo $PATH
       
           # stable
           echo "WINE_VER=stable_$(wget -qO- https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/ | grep wine-stable | sed 's|_| |g;s|~| |g' | awk '{print $5}' | tail -n1)" >> $GITHUB_ENV
