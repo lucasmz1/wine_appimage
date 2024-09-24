@@ -1,0 +1,110 @@
+version: 1
+
+script:
+  - rm -rf AppDir/
+  # Remove any previous build cache data
+  - mkdir -p AppDir/opt/wine-stable/
+  - wget -q -c "https://github.com/Kron4ek/Wine-Builds/releases/download/9.0/wine-9.0-amd64.tar.xz"
+  - tar xvf wine-9.0-amd64.tar.xz
+  - mv wine-9.0-amd64/* ./AppDir/opt/wine-stable/
+  - cp wrapper AppDir
+  # Add winetricks
+  - wget -q "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -P ./AppDir/bin && chmod +x ./AppDir/bin/winetricks
+  # Copy App icon to AppDir/usr/share/icons needed prior to appimage-builder ver 1.x.x
+  - mkdir -p AppDir/usr/share/icons ; cp wine.svg AppDir/usr/share/icons
+
+AppDir:
+  path: ./AppDir
+
+  app_info:
+    id: org.winehq.wine
+    name: wine
+    icon: wine
+    version: 9.0.0.0
+    exec: bin/bash
+    exec_args: wrapper $@
+
+  apt:
+    arch: [amd64, i386]
+    sources:
+      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse'
+      - sourceline: 'deb [trusted=yes] https://ppa.launchpadcontent.net/oibaf/graphics-drivers/ubuntu focal main'
+
+    include:
+      - bash
+      - cabextract
+      - cups
+      - dash
+      - perl
+      - coreutils
+      - mesa-utils
+      - unionfs-fuse
+      - vulkan-tools
+      - libcups2
+      # - libfuse2
+      # - libfuse3-3
+      - libmspack0
+      - gstreamer1.0-plugins-good:i386
+      - gstreamer1.0-plugins-bad:i386
+      - gstreamer1.0-plugins-ugly:i386
+      # - libnvidia-compute-520:i386
+      # - libnvidia-decode-520:i386
+      # - libnvidia-encode-520:i386
+      # - libnvidia-extra-520:i386
+      # - libnvidia-fbc1-520:i386
+      # - libnvidia-gl-520:i386
+      - libdrm2:i386
+      - libdrm-intel1:i386
+      - libdrm-nouveau2:i386
+      - libdrm-amdgpu1:i386
+      - libdrm-radeon1:i386
+      - libegl-mesa0:i386
+      - libegl1:i386
+      - libgbm1:i386
+      - libgl1:i386
+      - libgl1-mesa-dri:i386
+      - libglapi-mesa:i386
+      - libgles2:i386
+      - libglvnd0:i386
+      - libglx0:i386
+      - libglx-mesa0:i386
+      - mesa-vdpau-drivers:i386
+      - mesa-va-drivers:i386
+      - mesa-vulkan-drivers:i386
+      - libopenal1:i386
+      - libx11-6:i386
+      - libx11-xcb1:i386
+      - libxcb-dri2-0:i386
+      - libxcb-dri3-0:i386
+      - libxcb-glx0:i386
+      - libxcb-present0:i386
+      - libxcb-render0:i386
+      - libxcb-shape0:i386
+      - libxcb-shm0:i386
+      - libxcb-xfixes0:i386
+      - libxcb1:i386
+      - alsa-tools
+      - alsa-utils:i386
+      - libpulse0
+      - libpulse0:i386
+      - libxcomposite1
+      - libxcomposite1:i386
+
+  files:
+    exclude:
+      - usr/share/bash-completion/*
+      - usr/share/lintian/*
+
+  runtime:
+    env:
+      LIBGL_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBGL_DRIVERS_PATH}'
+      LIBVA_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBVA_DRIVERS_PATH}'
+      APPDIR_LIBC_VERSION: '2.31'
+
+    path_mappings:
+    - /opt/wine-stable:$APPDIR/opt/wine-stable
+
+AppImage:
+  update-information: gh-releases-zsync|mmtrt|WINE_AppImage|continuous-stable|wine-stable*.AppImage.zsync
+  #sign-key: None
+  arch: x86_64
