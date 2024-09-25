@@ -89,14 +89,6 @@ AppDir:
       - usr/share/bash-completion/*
       - usr/share/lintian/*
   
-  after_bundle:
-    # this is executed after the packages and files are added
-    - |
-     mkdir -p AppDir/opt/wine-stable/
-     wget -q -c "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
-     tar xvf wine-9.0-amd64.tar.xz
-     mv wine-9.0-amd64/* ./AppDir/opt/wine-stable/
-     cp wrapper AppDir
   runtime:
     env:
       LIBGL_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBGL_DRIVERS_PATH}'
@@ -105,7 +97,14 @@ AppDir:
 
     path_mappings:
     - /opt/wine-stable:$APPDIR/opt/wine-stable
-
+  after_bundle:
+    # this is executed after the packages and files are added
+    - |
+     mkdir -p AppDir/opt/wine-stable/
+     wget -q -c "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
+     tar xvf wine-9.0-amd64.tar.xz
+     mv wine-9.0-amd64/* ./AppDir/opt/wine-stable/
+     cp wrapper AppDir
 AppImage:
   update-information: gh-releases-zsync|mmtrt|WINE_AppImage|continuous-stable|wine-stable*.AppImage.zsync
   #sign-key: None
