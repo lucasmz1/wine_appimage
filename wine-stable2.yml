@@ -22,7 +22,7 @@ AppDir:
     icon: wine
     version: 9.0.0.0
     exec: bin/bash
-    exec_args: wrapper $@
+    exec_args: $APPDIR/wrapper $@
 
   apt:
     arch: [amd64, i386]
