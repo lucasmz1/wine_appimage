@@ -91,9 +91,7 @@ AppDir:
   after_bundle:
 
      wget -q "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
-     mkdir -p ./AppDir/opt ; $(cd ./AppDir/opt ; tar -xf ../../*.tar.xz ; mv wine-* wine-stable)
-
-     (cd AppDir/usr/bin; ln -s "../../opt/wine-stable/bin/"* .)  
+     mkdir -p ./AppDir/opt ; cd ./AppDir/opt ; tar -xf ../../*.tar.xz ; mv wine-* wine-stable  
   runtime:
     env:
       LIBGL_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBGL_DRIVERS_PATH}'
