@@ -89,10 +89,13 @@ AppDir:
       - usr/share/bash-completion/*
       - usr/share/lintian/*
   after_bundle:
-    # this is executed after the packages and files are added
-    - |
-     chmod +x wine_download.sh
-     env /bin/bash ./wine_download.sh  
+
+     WINE_VER="$(wget -qO- https://github.com/lucasmz1/Wine-Builds2/releases/expanded_assets/stable | grep -Eo '/wine-[0-9].*xz"' | cut -d'-' -f2 | head -1)"
+
+     wget -q "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-${WINE_VER}-amd64.tar.xz"
+     mkdir -p AppDir/opt ; (cd AppDir/opt ; tar -xf ../../*.tar.xz ; mv wine-* wine-stable)
+
+     (cd AppDir/usr/bin; ln -s "../../opt/wine-stable/bin/"* .)  
   runtime:
     env:
       LIBGL_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBGL_DRIVERS_PATH}'
