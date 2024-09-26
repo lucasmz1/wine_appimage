@@ -88,10 +88,11 @@ AppDir:
     exclude:
       - usr/share/bash-completion/*
       - usr/share/lintian/*
+      
   after_bundle:
-
-     wget -q "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
-     mkdir -p ./AppDir/opt ; tar xvf wine-9.0-amd64.tar.xz ; mv wine-9.0-amd64/ ./AppDir/opt/wine-stable
+      - wget -q "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
+      - mkdir -p ./AppDir/opt ; tar xvf wine-9.0-amd64.tar.xz ; mv wine-9.0-amd64/ ./AppDir/opt/wine-stable
+     
   runtime:
     env:
       LIBGL_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBGL_DRIVERS_PATH}'
