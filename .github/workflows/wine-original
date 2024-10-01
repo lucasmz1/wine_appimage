@@ -1,0 +1,64 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Build at 00:00 on every 12th day-of-month.
+  schedule:
+    - cron: "0 0 */6 * *"
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+    paths-ignore: [ '**/README.md' ]
+  pull_request:
+    branches: [ main ]
+    paths-ignore: [ '**/README.md' ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build-stable"
+  build-stable:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Prerequisites
+        run: |
+          sudo apt update && sudo apt install libfuse2 -y
+          wget -q "https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage" -O appimage-builder ; chmod a+x appimage-builder
+          wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool ; chmod a+x appimagetool
+          echo $PATH
+      
+          # stable
+          echo "WINE_VER=stable_$(wget -qO- https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/ | grep wine-stable | sed 's|_| |g;s|~| |g' | awk '{print $5}' | tail -n1)" >> $GITHUB_ENV
+          # Nvidia
+          # echo "NVDV=$(wget "https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa/+packages?field.name_filter=&field.status_filter=published&field.series_filter=kinetic" -qO- | grep -Eo drivers-.*changes | sed -r "s|_| |g;s|-| |g" | tail -n1 | awk '{print $9}')" >> $GITHUB_ENV
+
+      # Runs a set of commands using the runners shell
+      - name: Build appimage
+        run: |
+         
+          ./appimage-builder --skip-appimage --recipe wine-stable2.yml
+          find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/i386-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
+          find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/x86_64-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
+          find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/i386-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
+          find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/x86_64-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
+          ARCH=x86_64 ./appimagetool -n AppDir/
+
+      - name: release
+        uses: "marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303"
+        with:
+          title: wine original
+          automatic_release_tag: continuous-stable-original
+          prerelease: false
+          draft: false
+          files: /home/runner/work/wine_appimage/wine_appimage/*.AppImage*
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
