@@ -46,7 +46,7 @@ jobs:
       - name: Build appimage
         run: |
          
-          ./appimage-builder --skip-appimage --recipe wine-stable2.yml
+          ./appimage-builder --skip-appimage --recipe wine-stable.yml
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/i386-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/x86_64-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/i386-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
