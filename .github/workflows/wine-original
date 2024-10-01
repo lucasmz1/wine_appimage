@@ -51,6 +51,8 @@ jobs:
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/x86_64-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/i386-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/x86_64-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
+          chmod +x wine.sh
+          ./wine.sh
           ARCH=x86_64 ./appimagetool -n AppDir/
 
       - name: release
