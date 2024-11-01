@@ -147,6 +147,7 @@ AppDir:
 
   runtime:
     env:
+      APPDIR_LIBRARY_PATH: '$APPDIR/runtime/compat/lib/i386-linux-gnu'
       LIBGL_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri'
       LIBVA_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri'
       APPDIR_LIBC_VERSION: '2.31'
