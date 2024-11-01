@@ -8,7 +8,6 @@
      dpkg -x "wine-stable-i386_9.0.0.0~focal-1_i386.deb" AppDir/
      dpkg -x "wine-stable_9.0.0.0~focal-1_amd64.deb" AppDir/
      dpkg -x "wine-stable-amd64_9.0.0.0~focal-1_amd64.deb" AppDir/
-     ln -rsf ./AppDIr/runtime/compat/lib/i386-linux-gnu/ld-linux.so.2 ./AppDir/runtime/default/lib/
      patchelf --set-interpreter 'lib/ld-linux.so.2' ./AppDir/opt/wine-stable/bin/wine
      (cd AppDir/usr/bin; ln -s "../../opt/wine-stable/bin/"* .)
 
