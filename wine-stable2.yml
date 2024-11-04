@@ -26,7 +26,6 @@ AppDir:
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse' 
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-proposed main restricted universe multiverse' 
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse'
-      - sourceline: 'deb [trusted=yes] https://ppa.launchpadcontent.net/oibaf/graphics-drivers/ubuntu focal main'
 
     include:
       - bash
