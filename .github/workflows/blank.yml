@@ -32,7 +32,7 @@ jobs:
 
       - name: Prerequisites
         run: |
-          sudo apt update && sudo apt install libfuse2 -y
+          sudo apt update && sudo apt install libfuse2 patchelf -y
           wget -q "https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage" -O appimage-builder ; chmod a+x appimage-builder
           wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool ; chmod a+x appimagetool
           echo $PATH
@@ -50,9 +50,12 @@ jobs:
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/i386-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/x86_64-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/i386-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
-          find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/x86_64-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
           wget -q "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
           mkdir -p ./AppDir/opt ; tar xvf wine-9.0-amd64.tar.xz ; mv wine-9.0-amd64/ ./AppDir/opt/wine-stable
+          cd ./AppDir/runtime/compat/lib/i386-linux-gnu/
+          ln -rsf ld-linux.so.2 ${GITHUB_WORKSPACE}/AppDir/runtime/default/lib/
+          cd ${GITHUB_WORKSPACE}
+          patchelf --set-interpreter 'lib/ld-linux.so.2' ./AppDir/opt/wine-stable/bin/wine
           cp wrapper ./AppDir/
           ARCH=x86_64 ./appimagetool -n AppDir/
 
