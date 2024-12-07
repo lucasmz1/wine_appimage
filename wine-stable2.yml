@@ -2,6 +2,7 @@ version: 1
 
 script:
   - rm -rf AppDir/
+  - mkdir ./AppDir/
   - cp wine.svg ./AppDir/
 
 AppDir:
