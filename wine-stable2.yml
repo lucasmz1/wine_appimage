@@ -4,6 +4,8 @@ script:
   - rm -rf AppDir/
   - mkdir ./AppDir/
   - cp wine.svg ./AppDir/
+  - mkdir -p ./AppDir/usr/share/icons/
+  - cp wine.svg ./AppDir/usr/share/icons/
 
 AppDir:
   path: ./AppDir
