@@ -52,6 +52,7 @@ jobs:
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/i386-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
           wget -q "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
           mkdir -p ./AppDir/opt ; tar xvf wine-9.0-amd64.tar.xz ; mv wine-9.0-amd64/ ./AppDir/opt/wine-stable
+          ln -rs ${GITHUB_WORKSPACE}/AppDir/opt/wine-steable/bin/* ${GITHUB_WORKSPACE}/AppDir/usr/bin/
           cd ./AppDir/runtime/compat/lib/i386-linux-gnu/
           ln -rsf ld-linux.so.2 ${GITHUB_WORKSPACE}/AppDir/runtime/default/lib/
           cd ${GITHUB_WORKSPACE}
