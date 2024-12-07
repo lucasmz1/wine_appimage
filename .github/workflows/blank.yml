@@ -45,7 +45,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build appimage
         run: |
-          find -iname 'wine.svg' | xargs -i -t -exec cp wine.svg ${GITHUB_WORKSPACE}/AppDir/
           ./appimage-builder --skip-appimage --recipe wine-stable2.yml
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/i386-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/x86_64-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
