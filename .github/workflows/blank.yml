@@ -45,8 +45,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build appimage
         run: |
-          wget -q "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -P ./AppDir/bin && chmod +x ./AppDir/bin/winetricks
-          mkdir -p AppDir/usr/share/icons ; cp wine.svg AppDir/usr/share/icons
+          wget -q "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -P ${GITHUB_WORKSPACE}/AppDir/usr/bin/ && chmod +x ${GITHUB_WORKSPACE}/AppDir/usr/bin/winetricks
+          mkdir -p ${GITHUB_WORKSPACE}/AppDir/usr/share/icons/ ; cp wine.svg ${GITHUB_WORKSPACE}/AppDir/usr/share/icons/
           ./appimage-builder --skip-appimage --recipe wine-stable2.yml
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/i386-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/x86_64-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
