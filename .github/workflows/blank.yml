@@ -50,7 +50,6 @@ jobs:
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/lib/x86_64-linux-gnu/ -iname 'libz**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/x86_64-linux-gnu/
           find ${GITHUB_WORKSPACE}/AppDir/runtime/compat/usr/lib/i386-linux-gnu/ -iname 'libstdc**' | xargs -i -t -exec cp {} ${GITHUB_WORKSPACE}/AppDir/usr/lib/i386-linux-gnu/
           wget -q "https://github.com/lucasmz1/Wine-Builds2/releases/download/stable/wine-9.0-amd64.tar.xz"
-          wget -q "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -P ${GITHUB_WORKSPACE}/AppDir/usr/bin/ && chmod +x ${GITHUB_WORKSPACE}/AppDir/usr/bin/winetricks
           mkdir -p ./AppDir/opt ; tar xvf wine-9.0-amd64.tar.xz ; mv wine-9.0-amd64/ ./AppDir/opt/wine-stable
           ln -rs ${GITHUB_WORKSPACE}/AppDir/opt/wine-steable/bin/* ${GITHUB_WORKSPACE}/AppDir/usr/bin/
           cd ./AppDir/runtime/compat/lib/i386-linux-gnu/
