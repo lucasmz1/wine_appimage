@@ -1,9 +1,9 @@
 version: 1
 
 script:
-  - wget -q "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -P ./AppDir/usr/bin/ && chmod +x ./AppDir/usr/bin/winetricks
   - rm -rf AppDir/
-  - mkdir ./AppDir/
+  - mkdir -p ./AppDir/usr/bin/
+  - wget -q "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -P ./AppDir/usr/bin/ && chmod +x ./AppDir/usr/bin/winetricks
   - cp wine.svg ./AppDir/
   - mkdir -p ./AppDir/usr/share/icons/
   - cp wine.svg ./AppDir/usr/share/icons/
