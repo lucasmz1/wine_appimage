@@ -1,13 +1,13 @@
 #!/bin/bash
      WINE_VER="$(wget -qO- https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/ | grep wine-stable | sed 's|_| |g;s|~| |g' | awk '{print $5}' | tail -n1)"
-     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-i386/wine-stable_9.0.0.0~focal-1_i386.deb
-     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-i386/wine-stable-i386_9.0.0.0~focal-1_i386.deb
-     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/wine-stable_9.0.0.0~focal-1_amd64.deb
-     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/wine-stable-amd64_9.0.0.0~focal-1_amd64.deb
-     dpkg -x "wine-stable_9.0.0.0~focal-1_i386.deb" AppDir/
-     dpkg -x "wine-stable-i386_9.0.0.0~focal-1_i386.deb" AppDir/
-     dpkg -x "wine-stable_9.0.0.0~focal-1_amd64.deb" AppDir/
-     dpkg -x "wine-stable-amd64_9.0.0.0~focal-1_amd64.deb" AppDir/
+     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-i386/wine-stable_10.0.0.0~focal-1_i386.deb
+     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-i386/wine-stable-i386_10.0.0.0~focal-1_i386.deb
+     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/wine-stable_10.0.0.0~focal-1_amd64.deb
+     wget -q -c https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/wine-stable-amd64_10.0.0.0~focal-1_amd64.deb
+     dpkg -x "wine-stable_10.0.0.0~focal-1_i386.deb" AppDir/
+     dpkg -x "wine-stable-i386_10.0.0.0~focal-1_i386.deb" AppDir/
+     dpkg -x "wine-stable_10.0.0.0~focal-1_amd64.deb" AppDir/
+     dpkg -x "wine-stable-amd64_10.0.0.0~focal-1_amd64.deb" AppDir/
      patchelf --set-interpreter 'lib/ld-linux.so.2' ./AppDir/opt/wine-stable/bin/wine
      (cd AppDir/usr/bin; ln -s "../../opt/wine-stable/bin/"* .)
 
@@ -27,8 +27,8 @@
 
      # Deploy wine-mono wine-gecko
      # For future reference setting of MONO_VER see https://github.com/wine-mirror/wine/tree/stable of wine-stable
-     MONO_VER=$(wget "https://source.winehq.org/source/dlls/appwiz.cpl/addons.c?%21v=wine-9.0.0.0" -qO- | grep -Po 'MONO_VERSION</a>.*[0-9]"' | cut -d'"' -f4)
-     GECKO_VER=$(wget "https://source.winehq.org/source/dlls/appwiz.cpl/addons.c?%21v=wine-9.0.0.0" -qO- | grep -Po 'GECKO_VERSION</a>.*[0-9]"' | cut -d'"' -f4)
+     MONO_VER=$(wget "https://source.winehq.org/source/dlls/appwiz.cpl/addons.c?%21v=wine-10.0.0.0" -qO- | grep -Po 'MONO_VERSION</a>.*[0-9]"' | cut -d'"' -f4)
+     GECKO_VER=$(wget "https://source.winehq.org/source/dlls/appwiz.cpl/addons.c?%21v=wine-10.0.0.0" -qO- | grep -Po 'GECKO_VERSION</a>.*[0-9]"' | cut -d'"' -f4)
 
      case "$WINE_VER" in
      3.0.1|3.0.2|3.0.3|3.0.4|3.0.5)
