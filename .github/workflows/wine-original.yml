@@ -57,7 +57,7 @@ jobs:
           ln -rsf ld-linux.so.2 ${GITHUB_WORKSPACE}/AppDir/runtime/default/lib/
           cd ${GITHUB_WORKSPACE}
           cp org.winehq.wine.desktop AppDir/
-          ARCH=x86_64 ./uruntime --appimage-mkdwarfs -f --set-owner 0 --set-group 0 --no-history --no-create-timestamp --compression zstd:level=22 -S26 -B8 --header uruntime-lite -i ./AppDir -o wine-"$ARCH".AppImage
+          ARCH=x86_64 ./uruntime --appimage-mkdwarfs -f --set-owner 0 --set-group 0 --no-history --no-create-timestamp --compression zstd:level=22 -S26 -B8 --header uruntime -i ./AppDir -o wine-"$ARCH".AppImage
 
       - name: release
         uses: "marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303"
