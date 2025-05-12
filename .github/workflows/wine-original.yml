@@ -34,7 +34,7 @@ jobs:
         run: |
           sudo apt update && sudo apt install patchelf libfuse2 -y
           wget -q "https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage" -O appimage-builder ; chmod a+x appimage-builder
-          wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool ; chmod a+x appimagetool
+          wget -q "https://github.com/VHSgunzo/uruntime/releases/download/v0.3.9/uruntime-appimage-dwarfs-x86_64" -O uruntime ; chmod a+x uruntime
           echo $PATH
       
           # stable
@@ -57,7 +57,7 @@ jobs:
           ln -rsf ld-linux.so.2 ${GITHUB_WORKSPACE}/AppDir/runtime/default/lib/
           cd ${GITHUB_WORKSPACE}
           cp org.winehq.wine.desktop AppDir/
-          ARCH=x86_64 ./appimagetool -n AppDir/
+          ARCH=x86_64 ./uruntime --appimage-mkdwarfs -f --set-owner 0 --set-group 0 --no-history --no-create-timestamp --compression zstd:level=22 -S26 -B8 --header uruntime-lite -i ./AppDir -o wine-"$ARCH".AppImage
 
       - name: release
         uses: "marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303"
