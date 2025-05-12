@@ -58,7 +58,8 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           patchelf --set-interpreter 'lib/ld-linux.so.2' ./AppDir/opt/wine-stable/bin/wine
           cp wrapper ./AppDir/
-          ARCH=x86_64 ./uruntime --appimage-mkdwarfs -f --set-owner 0 --set-group 0 --no-history --no-create-timestamp --compression zstd:level=22 -S26 -B8 --header uruntime -i ./AppDir -o wine-"$ARCH".AppImage
+          export ARCH=x86_64
+          ./uruntime --appimage-mkdwarfs -f --set-owner 0 --set-group 0 --no-history --no-create-timestamp --compression zstd:level=22 -S26 -B8 --header uruntime -i ./AppDir -o wine-"$ARCH".AppImage
 
       - name: release
         uses: "marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303"
