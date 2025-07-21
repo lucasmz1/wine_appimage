@@ -32,6 +32,7 @@ jobs:
 
       - name: Prerequisites
         run: |
+          echo $PATH
           sudo apt update && sudo apt install patchelf libfuse2 -y
           wget -q "https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage" -O appimage-builder ; chmod a+x appimage-builder
           wget -q "https://github.com/VHSgunzo/uruntime/releases/download/v0.3.9/uruntime-appimage-dwarfs-x86_64" -O uruntime ; chmod a+x uruntime
