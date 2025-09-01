@@ -78,3 +78,8 @@ if [ -z "$APPLICATION" ] ; then
 else
 "$MAIN" "$APPLICATION" | cat
 fi
+
+PID=$!
+wait $PID
+
+exit 0
