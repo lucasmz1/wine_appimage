@@ -6,5 +6,6 @@
 <br>if you face audio issues like audio craking or noise do this "export PULSE_LATENCY_MSEC=60", this is not a problem of my build, this is a well known wine issue.<br/>
 <h1>enjoy<h1/>
 <h1>All credits to Taqi Raza<h1/>
+<h1>And Also Kro4ek<h2/>
   <h1>Telegram Group<h1/>
 <h1>https://t.me/appimagelucasmz1<h1/>
