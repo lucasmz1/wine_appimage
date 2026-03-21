@@ -39,7 +39,7 @@ AppDir:
       - mesa-utils
       - unionfs-fuse
       - vulkan-tools
-      - harfbuzz-utils
+      - harfbuzz-bin
       - libcups2
       # - libfuse2
       # - libfuse3-3
