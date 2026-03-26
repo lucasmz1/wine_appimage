@@ -65,7 +65,7 @@ jobs:
       - name: release
         uses: "marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303"
         with:
-          title: Continuous build
+          title: Continuous Staging
           automatic_release_tag: continuous-staging
           prerelease: false
           draft: false
