@@ -17,7 +17,7 @@ AppDir:
     icon: wine
     version: latest
     exec: bin/bash
-    exec_args: $APPDIR/wrapper $@
+    exec_args: $APPDIR/wrapper2 $@
 
   apt:
     arch: [amd64, i386]
