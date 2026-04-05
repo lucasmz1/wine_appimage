@@ -60,13 +60,11 @@ else
   MAIN="$APPDIR/opt/wine-stable/bin/wine"
 fi
 
-if [ -z "$APPLICATION" ] ; then
-"$MAIN" "$@" | cat
-else
-"$MAIN" "$APPLICATION" | cat
-fi
-
-PID=$!
-wait $PID
-
-exit 0
+case "$APPLICATION" in
+  "")
+    exec "$MAIN" "$@"
+    ;;
+  *)
+    exec "$MAIN" "$APPLICATION" "$@"
+    ;;
+esac
