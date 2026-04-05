@@ -1,5 +1,5 @@
 # WINE env
-export WINEPREFIX=${WINEPREFIX:-"$HOME/.wine-appimage"}
+export WINEPREFIX=${WINEPREFIX:-"$HOME/.wine-appimage2"}
 export WINEDEBUG=${WINEDEBUG:-"fixme-all"}
 
 # DXVK env
@@ -60,13 +60,11 @@ else
   MAIN="$APPDIR/opt/wine-staging/bin/wine"
 fi
 
-if [ -z "$APPLICATION" ] ; then
-"$MAIN" "$@" | cat
-else
-"$MAIN" "$APPLICATION" | cat
-fi
-
-PID=$!
-wait $PID
-
-exit 0
+case "$APPLICATION" in
+  "")
+    exec "$MAIN" "$@"
+    ;;
+  *)
+    exec "$MAIN" "$APPLICATION" "$@"
+    ;;
+esac
