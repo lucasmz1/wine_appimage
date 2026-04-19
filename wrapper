@@ -8,31 +8,41 @@ export DXVK_LOG_LEVEL=${DXVK_LOG_LEVEL:-"none"}
 export DXVK_STATE_CACHE=${DXVK_STATE_CACHE:-"0"}
 export DXVK_CONFIG_FILE=${DXVK_CONFIG_FILE:-"$progHome/dxvk.conf"}
 
-if [ ! -d "$WINEPREFIX" ]; then
+# 1. Limpeza de ambiente
+unset VK_ICD_FILENAMES
+unset VK_DRIVER_FILES
 
- if [ ! -d "$HOME"/.cache/wine ]; then
-   mkdir -p "$HOME"/.cache/wine
- fi
+# 2. Detecção de Hardware
+IS_NVIDIA=$(lspci -k | grep -iq "nvidia" && echo "true" || echo "false")
 
- # Remove old created links
- find "$HOME/.cache/wine/" -type l -delete &>/dev/null
+if [ "$IS_NVIDIA" = "true" ]; then
+    # No caso da NVIDIA, o arquivo padrão é este. 
+    # Algumas distros usam nvidia_icd.json, outras nvidia_layers.json (mas o icd é o principal)
+    export VK_DRIVER_FILES="/usr/share/vulkan/icd.d/nvidia_icd.json"
+    
+    # Caso o arquivo esteja em outro lugar (ex: flatpak ou caminhos customizados)
+    if [ ! -f "$VK_DRIVER_FILES" ]; then
+        export VK_DRIVER_FILES=$(ls /usr/share/vulkan/icd.d/nvidia*.json 2>/dev/null | head -n1)
+    fi
+else
+    # 3. Lógica para Intel e AMD (Mesa)
+    # Coleta todos os jsons de intel e radeon, transforma em lista separada por ':'
+    INTEL_LIST=$(ls /usr/share/vulkan/icd.d/intel*.json 2>/dev/null | tr '\n' ':')
+    AMD_LIST=$(ls /usr/share/vulkan/icd.d/radeon*.json 2>/dev/null | tr '\n' ':')
+    
+    # Une as listas e remove o último caractere (o ':' extra)
+    COMBINED="${INTEL_LIST}${AMD_LIST}"
+    export VK_DRIVER_FILES="${COMBINED%?}"
+fi
 
- if [ ! -f "$HOME"/.cache/wine/wine-mono-*.msi ]; then
-   ln -s $APPDIR/winedata/wine-mono-*.msi "$HOME"/.cache/wine/
- fi
+# 4. Aplicação das variáveis
+export VK_ICD_FILENAMES="$VK_DRIVER_FILES"
 
- if [ $(ls $APPDIR/winedata/ | grep gecko | head -1 | grep -c "e_g") -eq 1 ]; then
-   GECKO=$(ls $APPDIR/winedata/ | grep gecko | head -1 | cut -d'-' -f2)
- else
-   GECKO=$(ls $APPDIR/winedata/ | grep gecko | head -1 | cut -d'-' -f3)
- fi
-
- for wg in wine-gecko-${GECKO}-x86.msi wine-gecko-${GECKO}-x86_64.msi wine_gecko-${GECKO}-x86.msi wine_gecko-${GECKO}-x86_64.msi ; do
-   if [[ ! -f "$HOME"/.cache/wine/$wg && -f $APPDIR/winedata/$wg ]]; then
-     ln -s $APPDIR/winedata/$wg "$HOME"/.cache/wine/
-   fi
- done
-
+# Debug para confirmar no terminal
+if [ -z "$VK_DRIVER_FILES" ]; then
+    echo "ERRO: Nenhum driver Vulkan detectado!"
+else
+    echo "Vulkan configurado para: $VK_DRIVER_FILES"
 fi
 
 # Load winecfg if no arguments given
