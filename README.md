@@ -10,5 +10,3 @@
 wine-syswow64 now runs the most part of the games and apps 32 bits plus 64 bits. You can see that by the builds of Krone4k they're good and reliable.
 Thank you everyone whose shared this across the internet.
 This means I can focus in other more important things.<h2/>
-  <h1>Telegram Group<h1/>
-<h1>https://t.me/appimagelucasmz1<h1/>
