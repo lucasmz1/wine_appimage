@@ -211,10 +211,6 @@ AppDir:
       - pipewire-audio-client-libraries
       - libspa-0.2-jack
       - pipewire-pulse
-      - pipewire:i386
-      - pipewire-audio-client-libraries:i386
-      - libspa-0.2-jack:i386
-      - pipewire-pulse:i386
       
 
   files:
