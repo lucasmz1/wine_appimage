@@ -46,7 +46,6 @@ AppDir:
       - libmspack0
       ##################
       - vulkan-icd-loader
-      - vulkan-icd-loader:i386
       - libvulkan1
       - libvulkan1:i386
       - mesa-vulkan-drivers
