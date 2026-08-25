@@ -47,6 +47,7 @@ AppDir:
       - libmspack0
       ##################
       - libllvm15
+      - libllvm15:i386
       - libvulkan1
       - libvulkan1:i386
       - mesa-vulkan-drivers
