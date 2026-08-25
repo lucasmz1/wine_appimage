@@ -27,7 +27,7 @@ AppDir:
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse' 
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-proposed main restricted universe multiverse' 
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse'
-      #- sourceline: 'deb [trusted=yes] https://ppa.launchpadcontent.net/kisak/kisak-mesa/ubuntu focal main'
+      - sourceline: 'deb [trusted=yes] http://ppa.launchpad.net/pipewire-debian/pipewire-upstream/ubuntu focal main'
 
     include:
       - bash
@@ -206,6 +206,15 @@ AppDir:
       - libxrender1:i386
       - libxslt1.1:i386
       - libxxf86vm1:i386
+      #############pipewire########
+      - pipewire
+      - pipewire-audio-client-libraries
+      - libspa-0.2-jack
+      - pipewire-pulse
+      - pipewire:i386
+      - pipewire-audio-client-libraries:i386
+      - libspa-0.2-jack:i386
+      - pipewire-pulse:i386
       
 
   files:
