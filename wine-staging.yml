@@ -232,6 +232,8 @@ AppDir:
     - /opt/wine-staging:$APPDIR/opt/wine-staging
     - /usr/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu
     - /usr/lib/i386-linux-gnu:$APPDIR/usr/lib/i386-linux-gnu
+    - /usr/share/alsa:$APPDIR/usr/share/alsa
+    - /usr/share/pipewire:$APPDIR/usr/share/pipewire
 
 AppImage:
   update-information: gh-releases-zsync|mmtrt|WINE_AppImage|continuous-staging|wine-staging*.AppImage.zsync
