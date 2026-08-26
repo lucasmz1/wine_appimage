@@ -8,43 +8,6 @@ export DXVK_LOG_LEVEL=${DXVK_LOG_LEVEL:-"none"}
 export DXVK_STATE_CACHE=${DXVK_STATE_CACHE:-"0"}
 export DXVK_CONFIG_FILE=${DXVK_CONFIG_FILE:-"$progHome/dxvk.conf"}
 
-# 1. Limpeza de ambiente
-unset VK_ICD_FILENAMES
-unset VK_DRIVER_FILES
-
-# 2. Detecção de Hardware
-IS_NVIDIA=$(lspci -k | grep -iq "nvidia" && echo "true" || echo "false")
-
-if [ "$IS_NVIDIA" = "true" ]; then
-    # No caso da NVIDIA, o arquivo padrão é este. 
-    # Algumas distros usam nvidia_icd.json, outras nvidia_layers.json (mas o icd é o principal)
-    export VK_DRIVER_FILES="/usr/share/vulkan/icd.d/nvidia_icd.json"
-    
-    # Caso o arquivo esteja em outro lugar (ex: flatpak ou caminhos customizados)
-    if [ ! -f "$VK_DRIVER_FILES" ]; then
-        export VK_DRIVER_FILES=$(ls /usr/share/vulkan/icd.d/nvidia*.json 2>/dev/null | head -n1)
-    fi
-else
-    # 3. Lógica para Intel e AMD (Mesa)
-    # Coleta todos os jsons de intel e radeon, transforma em lista separada por ':'
-    INTEL_LIST=$(ls /usr/share/vulkan/icd.d/intel*.json 2>/dev/null | tr '\n' ':')
-    AMD_LIST=$(ls /usr/share/vulkan/icd.d/radeon*.json 2>/dev/null | tr '\n' ':')
-    
-    # Une as listas e remove o último caractere (o ':' extra)
-    COMBINED="${INTEL_LIST}${AMD_LIST}"
-    export VK_DRIVER_FILES="${COMBINED%?}"
-fi
-
-# 4. Aplicação das variáveis
-export VK_ICD_FILENAMES="$VK_DRIVER_FILES"
-
-# Debug para confirmar no terminal
-if [ -z "$VK_DRIVER_FILES" ]; then
-    echo "ERRO: Nenhum driver Vulkan detectado!"
-else
-    echo "Vulkan configurado para: $VK_DRIVER_FILES"
-fi
-
 # Load winecfg if no arguments given
 APPLICATION=""
 if [ -z "$*" ] ; then
