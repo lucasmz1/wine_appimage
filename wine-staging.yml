@@ -27,7 +27,7 @@ AppDir:
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse' 
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-proposed main restricted universe multiverse' 
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse'
-      - sourceline: 'deb [trusted=yes] http://ppa.launchpad.net/pipewire-debian/pipewire-upstream/ubuntu bionic main'
+      #- sourceline: 'deb [trusted=yes] http://ppa.launchpad.net/pipewire-debian/pipewire-upstream/ubuntu bionic main'
 
     include:
       - bash
@@ -205,10 +205,10 @@ AppDir:
       - libxml2
       - libxml2:i386
       #############pipewire########
-      - pipewire
-      - pipewire-audio-client-libraries
-      - libspa-0.2-jack
-      - pipewire-pulse
+      #- pipewire
+      #- pipewire-audio-client-libraries
+      #- libspa-0.2-jack
+      #- pipewire-pulse
       
 
   files:
