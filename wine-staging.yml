@@ -22,12 +22,12 @@ AppDir:
   apt:
     arch: [amd64, i386]
     sources:
-      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse'
-      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse' 
-      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse' 
-      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-proposed main restricted universe multiverse' 
-      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse'
-      #- sourceline: 'deb [trusted=yes] http://ppa.launchpad.net/pipewire-debian/pipewire-upstream/ubuntu bionic main'
+      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse'
+      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse' 
+      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse' 
+      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-proposed main restricted universe multiverse' 
+      - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse'
+      - sourceline: 'deb [trusted=yes] http://ppa.launchpad.net/pipewire-debian/pipewire-upstream/ubuntu focal main'
 
     include:
       - bash
@@ -38,6 +38,7 @@ AppDir:
       - coreutils
       - mesa-utils
       - unionfs-fuse
+      - vulkan-tools
       - libharfbuzz-bin
       - libcups2
       # - libfuse2
@@ -107,6 +108,7 @@ AppDir:
       - coreutils
       - mesa-utils
       - unionfs-fuse
+      - vulkan-tools
       - libcups2
       # - libfuse2
       # - libfuse3-3
@@ -155,8 +157,6 @@ AppDir:
       - libpulse0
       - libpulse0:i386
       # -lucas
-      - vulkan-utils
-      - libncurses5:i386
       - libasound2:i386
       - libglib2.0-0:i386
       - libgphoto2-6:i386
@@ -171,9 +171,13 @@ AppDir:
       - libx11-6:i386
       - libxext6:i386
       - ocl-icd-libopencl1:i386
+      - libopencl1:i386
+      - ocl-icd-libopencl1:i386
+      - libopencl-1.1-1:i386
       - ocl-icd-libopencl1:i386
       - libopencl-1.2-1:i386
       - libasound2-plugins:i386
+      - libncurses6:i386
       - libncurses5:i386
       - libcapi20-3:i386
       - libcups2:i386
@@ -205,10 +209,10 @@ AppDir:
       - libxml2
       - libxml2:i386
       #############pipewire########
-      #- pipewire
-      #- pipewire-audio-client-libraries
-      #- libspa-0.2-jack
-      #- pipewire-pulse
+      - pipewire
+      - pipewire-audio-client-libraries
+      - libspa-0.2-jack
+      - pipewire-pulse
       
 
   files:
@@ -222,7 +226,7 @@ AppDir:
       APPDIR_LIBRARY_PATH: '$APPDIR/runtime/compat/lib/i386-linux-gnu:$APPDIR/lib/i386-linux-gnu:$APPDIR/lib/x86_64-linux-gnu:$APPDIR/lib/x86_64-linux-gnu/security:$APPDIR/usr/lib/i386-linux-gnu:$APPDIR/usr/lib/i386-linux-gnu/alsa-lib:$APPDIR/usr/lib/i386-linux-gnu/caca:$APPDIR/usr/lib/i386-linux-gnu/capi:$APPDIR/usr/lib/i386-linux-gnu/dri:$APPDIR/usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders:$APPDIR/usr/lib/i386-linux-gnu/gstreamer-1.0:$APPDIR/usr/lib/i386-linux-gnu/i686/sse2:$APPDIR/usr/lib/i386-linux-gnu/krb5/plugins/preauth:$APPDIR/usr/lib/i386-linux-gnu/libgphoto2/2.5.24:$APPDIR/usr/lib/i386-linux-gnu/libgphoto2_port/0.12.0:$APPDIR/usr/lib/i386-linux-gnu/libv4l:$APPDIR/usr/lib/i386-linux-gnu/libv4l/plugins:$APPDIR/usr/lib/i386-linux-gnu/odbc:$APPDIR/usr/lib/i386-linux-gnu/pulseaudio:$APPDIR/usr/lib/i386-linux-gnu/sane:$APPDIR/usr/lib/i386-linux-gnu/sasl2:$APPDIR/usr/lib/i386-linux-gnu/sse2:$APPDIR/usr/lib/i386-linux-gnu/vdpau:$APPDIR/usr/lib/llvm-15/lib:$APPDIR/usr/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu/dri:$APPDIR/usr/lib/x86_64-linux-gnu/gallium-pipe:$APPDIR/usr/lib/x86_64-linux-gnu/krb5/plugins/preauth:$APPDIR/usr/lib/x86_64-linux-gnu/nss:$APPDIR/usr/lib/x86_64-linux-gnu/pulseaudio:$APPDIR/usr/lib/x86_64-linux-gnu/vdpau:$APPDIR/lib/x86_64:$APPDIR/lib/i386'
       LIBGL_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBGL_DRIVERS_PATH}'
       LIBVA_DRIVERS_PATH: '${APPDIR}/usr/lib/i386-linux-gnu/dri:${APPDIR}/usr/lib/x86_64-linux-gnu/dri:${LIBVA_DRIVERS_PATH}'
-      APPDIR_LIBC_VERSION: '2.27'
+      APPDIR_LIBC_VERSION: '2.31'
 
     path_mappings:
     - /opt/wine-staging:$APPDIR/opt/wine-staging
