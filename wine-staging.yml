@@ -157,8 +157,6 @@ AppDir:
       # -lucas
       - vulkan-utils
       - libncurses5:i386
-      - libopencl1:i386
-      - libopencl1
       - libasound2:i386
       - libglib2.0-0:i386
       - libgphoto2-6:i386
