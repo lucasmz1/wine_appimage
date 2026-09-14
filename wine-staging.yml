@@ -38,7 +38,6 @@ AppDir:
       - coreutils
       - mesa-utils
       - unionfs-fuse
-      - vulkan-tools
       - libharfbuzz-bin
       - libcups2
       # - libfuse2
@@ -108,7 +107,6 @@ AppDir:
       - coreutils
       - mesa-utils
       - unionfs-fuse
-      - vulkan-tools
       - libcups2
       # - libfuse2
       # - libfuse3-3
@@ -157,6 +155,10 @@ AppDir:
       - libpulse0
       - libpulse0:i386
       # -lucas
+      - vulkan-utils
+      - libncurses5:i386
+      - libopencl1:i386
+      - libopencl1
       - libasound2:i386
       - libglib2.0-0:i386
       - libgphoto2-6:i386
@@ -171,13 +173,9 @@ AppDir:
       - libx11-6:i386
       - libxext6:i386
       - ocl-icd-libopencl1:i386
-      - libopencl1:i386
-      - ocl-icd-libopencl1:i386
-      - libopencl-1.1-1:i386
       - ocl-icd-libopencl1:i386
       - libopencl-1.2-1:i386
       - libasound2-plugins:i386
-      - libncurses6:i386
       - libncurses5:i386
       - libcapi20-3:i386
       - libcups2:i386
