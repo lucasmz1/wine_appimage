@@ -229,6 +229,7 @@ AppDir:
       APPDIR_LIBC_VERSION: '2.31'
 
     path_mappings:
+    - /usr/share/vulkan:$APPDIR/usr/share/vulkan
     - /opt/wine-staging:$APPDIR/opt/wine-staging
     - /usr/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu
     - /usr/lib/i386-linux-gnu:$APPDIR/usr/lib/i386-linux-gnu
