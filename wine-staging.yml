@@ -28,11 +28,9 @@ AppDir:
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-proposed main restricted universe multiverse' 
       - sourceline: 'deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse'
       - sourceline: 'deb [trusted=yes] http://ppa.launchpad.net/pipewire-debian/pipewire-upstream/ubuntu focal main'
-      - sourceline: 'deb [trusted=yes] https://ppa.launchpadcontent.net/flexiondotorg/mangohud/ubuntu focal main'
 
     include:
       - bash
-      - mangohud
       - cabextract
       - cups
       - dash
