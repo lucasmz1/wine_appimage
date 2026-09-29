@@ -195,6 +195,7 @@ AppDir:
       - libosmesa6:i386
       - libpng16-16:i386
       - libsdl2-2.0-0:i386
+      - libsdl2-2.0-0
       - libtiff5:i386
       - libv4l-0:i386
       - libxcomposite1:i386
