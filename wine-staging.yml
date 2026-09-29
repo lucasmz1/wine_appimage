@@ -167,6 +167,9 @@ AppDir:
       - libpulse0:i386
       - libsane:i386
       - libudev1:i386
+      - libudev1
+      - libinput10
+      - libinput10:i386
       - libusb-1.0-0:i386
       - libx11-6:i386
       - libxext6:i386
