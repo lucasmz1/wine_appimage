@@ -30,6 +30,7 @@ AppDir:
       - sourceline: 'deb [trusted=yes] http://ppa.launchpad.net/pipewire-debian/pipewire-upstream/ubuntu focal main'
 
     include:
+      - xwayland
       - bash
       - cabextract
       - cups
