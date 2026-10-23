@@ -59,6 +59,7 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           patchelf --set-interpreter 'lib/ld-linux.so.2' ./AppDir/opt/wine-staging/lib/wine/i386-unix/wine
           cp wrapper2 ./AppDir/
+          find ./AppDir/usr/share/vulkan/icd.d/ -type f -exec sed -i -E 's#/usr/lib/(i386-linux-gnu|x86_64-linux-gnu)/##g' {} +
           export ARCH=x86_64
           ./uruntime --appimage-mkdwarfs -f --set-owner 0 --set-group 0 --no-history --no-create-timestamp --compression zstd:level=22 -S26 -B8 --header uruntime -i ./AppDir -o wine-"$ARCH".AppImage
 
