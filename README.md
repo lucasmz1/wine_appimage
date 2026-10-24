@@ -7,3 +7,4 @@
 <br>if you install dxvk you must override vulkan-1 WINEDLLOVERRIDES="vulkan-1=b" ./wine-x86_64.AppImage gta-vc.exe <br/>
 <h1>All credits to Taqi Raza<h1/>
 <h1>And Also Kron4ek<h1/>
+<h3>Mangohud added, for call it just use the env var MANGOHUD=1 before the ./wine.appimage<h3/>
