@@ -235,6 +235,7 @@ AppDir:
 
     path_mappings:
     - /usr/share/vulkan:$APPDIR/usr/share/vulkan
+    - /usr/lib/mangohud:$APPDIR/usr/lib/mangohud
     - /opt/wine-staging:$APPDIR/opt/wine-staging
     - /usr/lib/x86_64-linux-gnu/dri:$APPDIR/usr/lib/x86_64-linux-gnu/dri
     - /usr/lib/i386-linux-gnu/dri:$APPDIR/usr/lib/i386-linux-gnu/dri
