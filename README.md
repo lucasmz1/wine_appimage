@@ -8,3 +8,4 @@
 <h1>All credits to Taqi Raza<h1/>
 <h1>And Also Kron4ek<h1/>
 <h3>Mangohud added, for call it just use the env var MANGOHUD=1 before the ./wine.appimage<h3/>
+<h3>New improvement now you can make symlink to the appimage like: `ln -rs ./wine.appimage wine` or `ln -rs ./wine.appimage winecfg` to any other wine binary also binaries placed inside of the appimage like vkcube etc. this was done aiming to make integration with lutris appimage, like make some symlinks to wine binaries and add then through the lutris gui to easily call wine when a game is launched<h3/>
