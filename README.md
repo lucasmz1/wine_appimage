@@ -1,5 +1,5 @@
 # wine_appimage
-
+<h1>Attention!!! I am facing system freeze  in my ubuntu 26.04 after run winecfg, I'll investigate this and then I will make the modifications in this software to fix it. until there i will stop provide the appimage.<h1/>
 <h1>wine 11 avaliable just donwload it!<h1/>
     * [Latest Stable Release](https://github.com/lucasmz1/wine_appimage/releases/tag/continuous-stable)
 <br>if you face audio issues like audio craking or noise do this "export PULSE_LATENCY_MSEC=60", this is not a problem of my build, this is a well known wine issue.<br/>
